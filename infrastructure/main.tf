@@ -19,3 +19,8 @@ module "app_service" {
   source              = "./modules/app_service"
     resource_group_name = var.resource_group_name
 }
+
+module "blob_storage" {
+  source = "./modules/blob_storage"
+  resource_group_name = var.resource_group_name
+}
