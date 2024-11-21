@@ -1,9 +1,9 @@
 provider "azurerm" {
   features {}
-  subscription_id = "a8fd8362-8b57-4522-9cbf-1f60943a272c"
+  subscription_id = var.subscription_id
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "finalProject"
-  location = "France Central"
+  name     = var.resource_group_name
+  location = var.location
 }

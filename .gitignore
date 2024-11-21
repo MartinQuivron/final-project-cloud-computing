@@ -1,6 +1,6 @@
 
-# Ignorer terraform vars
-infrastructure/.terraform
+terraform.tfstate
+terraform.tfvars
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
