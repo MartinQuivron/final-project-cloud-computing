@@ -1,3 +1,7 @@
+
+# Ignorer terraform vars
+infrastructure/.terraform
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
