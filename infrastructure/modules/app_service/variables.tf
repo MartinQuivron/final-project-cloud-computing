@@ -8,3 +8,8 @@ variable "resource_group_name" {
   description = "Name of resource group"
   type        = string
 }
+
+variable "random_id" {
+  description = "Random ID"
+  type        = string
+}

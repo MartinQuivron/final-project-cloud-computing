@@ -1,5 +1,5 @@
 resource "azurerm_postgresql_flexible_server" "postgresql-server"{
-    name                = "postgresql-server-final-project15"
+    name                = "postgresql-server-${var.random_id}"
     resource_group_name = var.resource_group_name
     location            = var.location
     sku_name            = "B_Standard_B1ms"

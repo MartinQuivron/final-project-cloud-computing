@@ -1,18 +1,3 @@
-variable "username_db" {
-  description = "Username for the database"
-  type        = string
-}
-
-variable "password_db" {
-  description = "Password for the database"
-  type        = string
-}
-
-variable "subscription_id" {
-  description = "Subscription ID"
-  type        = string
-}
-
 variable "location" {
   description = "Region for resources"
   type        = string
@@ -33,5 +18,10 @@ variable "vnet_adress_space" {
 variable "subnet_prefixes" {
   description = "Prefixes for the subnets"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0"]
+  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+}
+
+variable "random_id" {
+  description = "Random ID"
+  type        = string
 }
