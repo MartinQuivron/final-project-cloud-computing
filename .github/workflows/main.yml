@@ -37,3 +37,14 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
+  feature_lint_and_test:
+    uses: ./.github/workflows/lint_test.yml
+    with:
+      python-version: "3.12"
+
+  feature_codeql_analysis:
+    needs: feature_lint_and_test
+    uses: ./.github/workflows/analysis.yml
+    with:
+      run_codeql: true
+
