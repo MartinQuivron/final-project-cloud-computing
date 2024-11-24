@@ -46,7 +46,7 @@ variable "docker_registry_url" {
 variable "docker_image" {
   description = "Docker image"
   type        = string
-  default     = "ghcr.io/MartinQuivron/final-project-cloud-computing:latest"
+  default     = "ghcr.io/martinquivron/final-project-cloud-computing/test_image:latest"
 }
 
 variable "docker_registry_username" {
