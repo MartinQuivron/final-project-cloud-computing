@@ -19,3 +19,10 @@ jobs:
     uses: ./.github/workflows/lint_test.yml
     with:
       python-version: "3.12" #flake8 installed in the virtual environment
+  
+  codeql_analysis:
+    uses: ./.github/workflows/analysis.yml
+    with:
+      run_codeql: true
+
+
