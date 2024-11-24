@@ -25,4 +25,15 @@ jobs:
     with:
       run_codeql: true
 
+  docker_build_test:
+    uses: ./.github/workflows/build_image.yml
+    with:
+      docker_context: .
+      dockerfile: ./Dockerfile
+      image_name: test_image
+      tags: |
+        type=ref,event=branch
+        type=raw,value=latest
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
