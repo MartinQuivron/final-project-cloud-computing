@@ -10,4 +10,8 @@ resource "azurerm_app_service" "app_service_project" {
   location            = var.location
   resource_group_name = var.resource_group_name
   app_service_plan_id = azurerm_service_plan.service_plan_project.id
+
+  identity {
+    type = "SystemAssigned"
+  }
 }

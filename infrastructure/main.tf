@@ -29,8 +29,13 @@ module "database" {
 
 module "app_service" {
   source              = "./modules/app_service"
-    resource_group_name = var.resource_group_name
-    random_id = random_id.random.hex
+  resource_group_name = var.resource_group_name
+  random_id = random_id.random.hex
+  database_host       = module.database.database_host
+  storage_account_url = module.blob_storage.storage_account_url
+  username_db         = var.username_db
+  password_db         = var.password_db
+  database_name       = module.database.database_name
 }
 
 module "blob_storage" {

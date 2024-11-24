@@ -7,7 +7,7 @@ resource "azurerm_storage_account" "blob_storage_project" {
 }
 
 resource "azurerm_storage_container" "blob_storage_container" {
-  name                  = "container${var.random_id}"
+  name                  = "quotes"
   storage_account_id  = azurerm_storage_account.blob_storage_project.id
   container_access_type = "private"
 }
