@@ -18,4 +18,4 @@ jobs:
     needs: build_project
     uses: ./.github/workflows/lint_test.yml
     with:
-      python-version: "3.12"
+      python-version: "3.12" #flake8 installed in the virtual environment
