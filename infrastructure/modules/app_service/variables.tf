@@ -38,3 +38,28 @@ variable "storage_account_url" {
   description = "URL of the storage account"
   type        = string
 }
+
+variable "subnet_id_app_service" {
+  description = "ID of the subnet for the app service"
+  type        = string
+}
+
+variable "docker_registry_url" {
+  description = "URL of the docker registry"
+  type        = string
+}
+
+variable "docker_image" {
+  description = "Docker image"
+  type        = string
+}
+
+variable "docker_registry_username" {
+  description = "Username for the docker registry"
+  type        = string
+}
+
+variable "docker_registry_password" {
+  description = "Password for the docker registry"
+  type        = string
+}

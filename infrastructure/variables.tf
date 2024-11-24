@@ -37,3 +37,26 @@ variable "subnet_prefixes" {
   default     = ["10.0.1.0/24", "10.0.2.0"]
 }
 
+variable "docker_registry_url" {
+  description = "URL of the docker registry"
+  type        = string
+  default = "https://ghcr.io"
+}
+
+variable "docker_image" {
+  description = "Docker image"
+  type        = string
+  default     = "ghcr.io/MartinQuivron/final-project-cloud-computing:latest"
+}
+
+variable "docker_registry_username" {
+  description = "Username for the docker registry"
+  type        = string
+  default     = "MartinQuivron"
+}
+
+variable "docker_registry_password" {
+  description = "Password for the docker registry"
+  type        = string
+  sensitive = true
+}

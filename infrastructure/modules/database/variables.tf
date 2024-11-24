@@ -23,3 +23,8 @@ variable "random_id" {
   description = "Random ID"
   type        = string
 }
+
+variable "vnet_id" {
+  description = "ID of the virtual network"
+  type        = string
+}
