@@ -5,6 +5,16 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method   = "Static"  
 }
 
+locals {
+  backend_address_pool_name      = "${var.random_id}-beap"
+  frontend_port_name             = "${var.random_id}-feport"
+  frontend_ip_configuration_name = "${var.random_id}-feip"
+  http_settings_name             = "${var.random_id}-be-htst"
+  listener_name                  = "${var.random_id}-httplstn"
+  request_routing_rule_name      = "${var.random_id}-rqrt"
+  redirect_configuration_name    = "${var.random_id}-rdrcfg"
+}
+
 resource "azurerm_application_gateway" "app_gateway" {
     name = "app-gateway-${var.random_id}"
     resource_group_name = var.resource_group_name
@@ -20,22 +30,22 @@ resource "azurerm_application_gateway" "app_gateway" {
     }
 
     frontend_port {
-        name = "app-gateway-frontend-port-${var.random_id}-feport"
+        name = local.frontend_port_name
         port = 80
     }
 
     frontend_ip_configuration {
-        name = "app-gateway-frontend-ip-configuration-${var.random_id}-feip"
+        name = local.frontend_ip_configuration_name
         public_ip_address_id = azurerm_public_ip.public_ip.id
     }
 
     backend_address_pool {
-        name = "app-gateway-backend-address-pool-${var.random_id}-beap"
+        name = local.backend_address_pool_name
         fqdns = [var.app_service_host]
     }
 
     backend_http_settings {
-        name = "app-gateway-http-settings-${var.random_id}-behttp"
+        name = local.http_settings_name
         cookie_based_affinity = "Disabled"
         port = 80
         path = "/"
@@ -44,18 +54,18 @@ resource "azurerm_application_gateway" "app_gateway" {
     }
 
     http_listener {
-        name = "app-gateway-http-listener-${var.random_id}-httpl"
-        frontend_ip_configuration_name = "app-gateway-frontend-ip-configuration-${var.random_id}-feip"
-        frontend_port_name = "app-gateway-frontend-port-${var.random_id}-feport"
+        name = local.listener_name
+        frontend_ip_configuration_name = local.frontend_ip_configuration_name
+        frontend_port_name = local.frontend_port_name
         protocol = "Http"
     }
 
     request_routing_rule {
-        name = "app-gateway-request-routing-rule-${var.random_id}-rqrt"
+        name = local.request_routing_rule_name
         rule_type = "Basic"
-        http_listener_name = "app-gateway-http-listener-${var.random_id}-httpl"
-        backend_address_pool_name = "app-gateway-backend-address-pool-${var.random_id}-beap"
-        backend_http_settings_name = "app-gateway-http-settings-${var.random_id}-behttp"
-        priority = 100
+        http_listener_name = local.listener_name
+        backend_address_pool_name = local.backend_address_pool_name
+        backend_http_settings_name = local.http_settings_name
+        priority = 9
     }
 }

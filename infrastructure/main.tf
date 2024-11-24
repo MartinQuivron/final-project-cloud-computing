@@ -27,6 +27,7 @@ module "vnet" {
   location = var.location
   random_id = random_id.random.hex
   subnet_id_app_service = module.vnet.subnet_id_app_service
+  subnet_id_db = module.vnet.subnet_id_db
 }
 
 module "database" {
@@ -36,6 +37,7 @@ module "database" {
     password_db = var.password_db
     random_id = random_id.random.hex
     vnet_id = module.vnet.vnet_id
+    subnet_id_db = module.vnet.subnet_id_db
 }
 
 module "app_service" {

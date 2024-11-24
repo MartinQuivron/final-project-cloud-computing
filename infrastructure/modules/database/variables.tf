@@ -28,3 +28,8 @@ variable "vnet_id" {
   description = "ID of the virtual network"
   type        = string
 }
+
+variable "subnet_id_db" {
+  description = "ID of the subnet for the database"
+  type        = string
+}

@@ -15,9 +15,9 @@ resource "azurerm_linux_web_app" "app_service_project" {
 
   site_config {
     application_stack {
-      docker_registry_url = var.docker_registry_url
-      docker_image_name = var.docker_image
-      docker_registry_username = var.docker_registry_username
+      docker_registry_url = "https://ghcr.io"
+      docker_image_name = "ghcr.io/MartinQuivron/final-project-cloud-computing:latest"
+      docker_registry_username = "MartinQuivron"
       docker_registry_password = var.docker_registry_password
     }
   }

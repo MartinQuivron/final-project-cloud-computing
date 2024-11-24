@@ -21,6 +21,8 @@ resource "azurerm_postgresql_flexible_server" "postgresql-server"{
     administrator_password = var.password_db
     version = "16"
     public_network_access_enabled = false
+    delegated_subnet_id = var.subnet_id_db
+    private_dns_zone_id = azurerm_private_dns_zone.private_dns_zone.id
 }
 
 resource "azurerm_postgresql_flexible_server_database" "postgresql_database" {
