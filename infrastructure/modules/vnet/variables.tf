@@ -19,3 +19,13 @@ variable "random_id" {
   description = "Random ID"
   type        = string
 }
+
+variable "subnet_id_app_service" {
+  description = "ID of the subnet for the app service"
+  type        = string
+}
+
+variable "subnet_id_db" {
+  description = "ID of the subnet for the database"
+  type        = string
+}
