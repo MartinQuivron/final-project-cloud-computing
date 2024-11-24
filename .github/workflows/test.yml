@@ -1,9 +1,21 @@
-name: Test Build Workflow
+name: Test Workflow
 
-on: push
+on:
+  push:
+    branches:
+      - CI/CD
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test_build:
+  build_project:
     uses: ./.github/workflows/build.yml
+    with:
+      python-version: "3.12"
+
+  lint_and_test:
+    needs: build_project
+    uses: ./.github/workflows/lint_test.yml
     with:
       python-version: "3.12"
