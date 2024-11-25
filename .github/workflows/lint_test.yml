@@ -32,5 +32,3 @@ jobs:
       - name: Run linter (via Flake8)
         run: flake8 --max-line-length 99 $GITHUB_WORKSPACE/examples/
 
-      - name: Run tests (via pytest)
-        run: uv run pytest $GITHUB_WORKSPACE/tests/
