@@ -1,5 +1,10 @@
 # Infrastructure Documentation
 
+## Membres du groupe
+
+- Martin Quivron
+- Adel Eutamene
+
 ## Description
 
 Cette infrastructure configure un environnement complet sur Azure pour déployer une application web. Elle inclut les ressources suivantes :
