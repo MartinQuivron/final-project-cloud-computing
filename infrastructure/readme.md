@@ -42,9 +42,41 @@ Cette infrastructure configure un environnement complet sur Azure pour déployer
 
 L'organisation des fichiers Terraform pour cette infrastructure est la suivante :
 
-infrastructure/ ├── main.tf # Déclarations principales des ressources Terraform. ├── variables.tf # Variables utilisées dans l'infrastructure. ├── outputs.tf # Sorties des ressources Terraform. ├── terraform.tfstate # Fichier d'état généré après l'application. ├── terraform.tfstate.backup# Sauvegarde de l'état Terraform. ├── .terraform.lock.hcl # Fichier de verrouillage Terraform. ├── modules/ # Modules pour les ressources spécifiques : │ ├── app_gateway/ │ │ ├── main.tf # Logique principale pour l'App Gateway. │ │ ├── outputs.tf # Sorties pour l'App Gateway. │ │ └── variables.tf # Variables spécifiques à l'App Gateway. │ ├── app_service/ │ │ ├── main.tf # Logique principale pour l'App Service. │ │ ├── outputs.tf # Sorties pour l'App Service. │ │ └── variables.tf # Variables spécifiques à l'App Service. │ ├── blob_storage/ │ │ ├── main.tf # Logique principale pour le Blob Storage. │ │ ├── outputs.tf # Sorties pour le Blob Storage. │ │ └── variables.tf # Variables spécifiques au Blob Storage. │ ├── database/ │ │ ├── main.tf # Logique principale pour la base de données. │ │ ├── outputs.tf # Sorties pour la base de données. │ │ └── variables.tf # Variables spécifiques à la base de données. │ └── vnet/ │ ├── main.tf # Logique principale pour le réseau virtuel. │ ├── outputs.tf # Sorties pour le réseau virtuel. │ └── variables.tf # Variables spécifiques au réseau virtuel.
+```
+
+infrastructure/
+├── main.tf               # Déclarations principales des ressources Terraform.
+├── variables.tf          # Variables utilisées dans l'infrastructure.
+├── outputs.tf            # Sorties des ressources Terraform.
+├── terraform.tfstate     # Fichier d'état généré après l'application.
+├── terraform.tfstate.backup # Sauvegarde de l'état Terraform.
+├── .terraform.lock.hcl   # Fichier de verrouillage Terraform.
+├── modules/              # Modules pour les ressources spécifiques :
+│   ├── app_gateway/
+│   │   ├── main.tf       # Logique principale pour l'App Gateway.
+│   │   ├── outputs.tf    # Sorties pour l'App Gateway.
+│   │   └── variables.tf  # Variables spécifiques à l'App Gateway.
+│   ├── app_service/
+│   │   ├── main.tf       # Logique principale pour l'App Service.
+│   │   ├── outputs.tf    # Sorties pour l'App Service.
+│   │   └── variables.tf  # Variables spécifiques à l'App Service.
+│   ├── blob_storage/
+│   │   ├── main.tf       # Logique principale pour le Blob Storage.
+│   │   ├── outputs.tf    # Sorties pour le Blob Storage.
+│   │   └── variables.tf  # Variables spécifiques au Blob Storage.
+│   ├── database/
+│   │   ├── main.tf       # Logique principale pour la base de données.
+│   │   ├── outputs.tf    # Sorties pour la base de données.
+│   │   └── variables.tf  # Variables spécifiques à la base de données.
+│   └── vnet/
+│       ├── main.tf       # Logique principale pour le réseau virtuel.
+│       ├── outputs.tf    # Sorties pour le réseau virtuel.
+│       └── variables.tf  # Variables spécifiques au réseau virtuel.
+```
 
 ---
+
+
 
 ## Modules
 
