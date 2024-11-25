@@ -14,27 +14,32 @@ Cette infrastructure configure un environnement complet sur Azure pour déployer
 
 ## Variables
 
-| Variable                     | Default                         | Description                                                          |
-|------------------------------|---------------------------------|----------------------------------------------------------------------|
-| `location`                   | `francecentral`                | Localisation des ressources Azure                                   |
-| `resource_group_name`        | `my-resource-group`            | Nom du groupe de ressources dans lequel toutes les ressources sont regroupées |
-| `app_service_name`           | `my-app-service`               | Nom de l'App Service                                                |
-| `database_server_name`       | `my-database-server`           | Nom du serveur PostgreSQL                                           |
-| `database_name`              | `my-database`                  | Nom de la base de données dans le serveur                           |
-| `database_username`          | `dbadmin`                      | Nom d'utilisateur administrateur pour la base de données            |
-| `database_password`          | `password123`                  | Mot de passe administrateur pour la base de données                 |
-| `blob_storage_name`          | `myblobstorage`                | Nom du compte de stockage Azure                                     |
-| `vnet_name`                  | `my-vnet`                      | Nom du réseau virtuel                                               |
+## Variables
 
----
+Voici les variables utilisées pour configurer cette infrastructure :
 
-## Output
+| **Variable**               | **Description**                                | **Type**          | **Default**                                                   |
+|-----------------------------|-----------------------------------------------|-------------------|--------------------------------------------------------------|
+| `random_id`                | Identifiant aléatoire                         | `string`          | -                                                            |
+| `resource_group_name`      | Nom du groupe de ressources                   | `string`          | -                                                            |
+| `location`                 | Région pour les ressources                    | `string`          | `France Central`                                             |
+| `username_db`              | Nom d'utilisateur pour la base de données     | `string`          | -                                                            |
+| `password_db`              | Mot de passe pour la base de données          | `string` (sensitif)| -                                                            |
+| `database_name`            | Nom de la base de données                     | `string`          | -                                                            |
+| `database_host`            | Hôte de la base de données                    | `string`          | -                                                            |
+| `storage_account_url`      | URL du compte de stockage                     | `string`          | -                                                            |
+| `subnet_id_app_service`    | ID du sous-réseau pour l'App Service           | `string`          | -                                                            |
+| `subnet_id_db`             | ID du sous-réseau pour la base de données     | `string`          | -                                                            |
+| `subnet_id_app_gateway`    | ID du sous-réseau pour l'App Gateway           | `string`          | -                                                            |
+| `docker_registry_url`      | URL du registre Docker                        | `string`          | `https://ghcr.io`                                            |
+| `docker_image`             | Image Docker                                  | `string`          | `ghcr.io/martinquivron/final-project-cloud-computing/release_image:latest` |
+| `docker_registry_username` | Nom d'utilisateur du registre Docker          | `string`          | `MartinQuivron`                                              |
+| `docker_registry_password` | Mot de passe du registre Docker               | `string` (sensitif)| -                                                            |
+| `subscription_id`          | ID de l'abonnement                            | `string`          | -                                                            |
+| `vnet_address_space`       | Espace d'adressage du réseau virtuel          | `list(string)`    | `["10.0.0.0/16"]`                                            |
+| `subnet_prefixes`          | Préfixes pour les sous-réseaux                | `list(string)`    | `["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]`             |
 
-| Variable      | Description                                                 |
-|---------------|-------------------------------------------------------------|
-| `app_gateway` | L'URL de l'App Gateway pour accéder à l'application         |
-| `database`    | Détails de connexion à la base de données                  |
-| `storage`     | URL pour accéder au compte de stockage                     |
+Chaque module (App Gateway, App Service, Blob Storage, Database, VNet) utilise ces variables pour configurer ses ressources. Les valeurs sensibles comme `password_db` et `docker_registry_password` doivent être sécurisées.
 
 ---
 
@@ -48,8 +53,6 @@ infrastructure/
 ├── main.tf               # Déclarations principales des ressources Terraform.
 ├── variables.tf          # Variables utilisées dans l'infrastructure.
 ├── outputs.tf            # Sorties des ressources Terraform.
-├── terraform.tfstate     # Fichier d'état généré après l'application.
-├── terraform.tfstate.backup # Sauvegarde de l'état Terraform.
 ├── .terraform.lock.hcl   # Fichier de verrouillage Terraform.
 ├── modules/              # Modules pour les ressources spécifiques :
 │   ├── app_gateway/
