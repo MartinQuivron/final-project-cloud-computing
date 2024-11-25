@@ -54,6 +54,7 @@ module "app_service" {
   docker_image        = var.docker_image
   docker_registry_username = var.docker_registry_username
   docker_registry_password = var.docker_registry_password
+  azure_storage_account_id = module.blob_storage.azure_storage_account_id
 }
 
 module "blob_storage" {

@@ -7,7 +7,15 @@ resource "azurerm_storage_account" "blob_storage_project" {
 }
 
 resource "azurerm_storage_container" "blob_storage_container" {
-  name                  = "quotes"
+  name                  = "api"
   storage_account_id  = azurerm_storage_account.blob_storage_project.id
   container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "blob_storage" {
+  name = "quotes.json"
+  source = "${path.module}/quotes.json"
+  storage_account_name = azurerm_storage_account.blob_storage_project.name
+  storage_container_name = azurerm_storage_container.blob_storage_container.name
+  type = "Block"
 }

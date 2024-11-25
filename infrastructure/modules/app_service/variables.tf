@@ -63,3 +63,8 @@ variable "docker_registry_password" {
   description = "Password for the docker registry"
   type        = string
 }
+
+variable "azure_storage_account_id" {
+  description = "ID of the storage account"
+  type        = string
+}

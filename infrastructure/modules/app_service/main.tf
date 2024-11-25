@@ -36,3 +36,9 @@ resource "azurerm_linux_web_app" "app_service_project" {
     type = "SystemAssigned"
   }
 }
+
+resource "azurerm_role_assignment" "blob_reader" {
+  scope                = var.azure_storage_account_id
+  role_definition_name = "Storage Blob Data Reader"
+  principal_id         = azurerm_linux_web_app.app_service_project.identity[0].principal_id
+}
