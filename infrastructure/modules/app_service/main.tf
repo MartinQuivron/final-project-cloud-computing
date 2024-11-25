@@ -16,7 +16,7 @@ resource "azurerm_linux_web_app" "app_service_project" {
   site_config {
     application_stack {
       docker_registry_url = "https://ghcr.io"
-      docker_image_name = "ghcr.io/MartinQuivron/final-project-cloud-computing:latest"
+      docker_image_name = "ghcr.io/martinquivron/final-project-cloud-computing/release_image:latest"
       docker_registry_username = "MartinQuivron"
       docker_registry_password = var.docker_registry_password
     }
@@ -25,10 +25,11 @@ resource "azurerm_linux_web_app" "app_service_project" {
   app_settings = {
     DATABASE_HOST = var.database_host
     DATABASE_PORT = "5432"
-    DATABASE_NAME = var.database_name
+    DATABASE_NAME = "examples"
     DATABASE_USER = var.username_db
     DATABASE_PASSWORD = var.password_db
     STORAGE_ACCOUNT_URL = var.storage_account_url
+    PORT = "80"
   }
 
   identity {
