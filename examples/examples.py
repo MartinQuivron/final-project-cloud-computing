@@ -18,17 +18,9 @@ def read_root():
 
 
 @app.get("/examples")
-
 def create_table():
     try:
-        conn = psycopg2.connect(
-            host=get_environment_variable("DATABASE_HOST"),
-            port=get_environment_variable("DATABASE_PORT", "5432"),
-            database=get_environment_variable("DATABASE_NAME"),
-            user=get_environment_variable("DATABASE_USER"),
-            password=get_environment_variable("DATABASE_PASSWORD"),
-            connect_timeout=1,
-        )
+        conn = connect_to_db()
         cur = conn.cursor()
 
         create_table_query = """
@@ -59,15 +51,7 @@ def create_table():
 
 def read_examples():
     try:
-        conn = psycopg2.connect(
-            host=get_environment_variable("DATABASE_HOST"),
-            port=get_environment_variable("DATABASE_PORT", "5432"),
-            database=get_environment_variable("DATABASE_NAME"),
-            user=get_environment_variable("DATABASE_USER"),
-            password=get_environment_variable("DATABASE_PASSWORD"),
-            connect_timeout=1,
-        )
-
+        conn = connect_to_db()
         cur = conn.cursor()
         cur.execute("SELECT * FROM examples")
         examples = cur.fetchall()
@@ -84,6 +68,16 @@ def get_environment_variable(key, default=None):
 
     return value
 
+def connect_to_db():
+    conn = psycopg2.connect(
+        host=get_environment_variable("DATABASE_HOST"),
+        port=get_environment_variable("DATABASE_PORT", "5432"),
+        database=get_environment_variable("DATABASE_NAME"),
+        user=get_environment_variable("DATABASE_USER"),
+        password=get_environment_variable("DATABASE_PASSWORD"),
+        connect_timeout=1,
+    )
+    return conn
 
 @app.get("/quotes")
 def read_quotes():
