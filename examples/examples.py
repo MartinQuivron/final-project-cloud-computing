@@ -31,7 +31,7 @@ def create_table():
         """
 
         cur.execute(create_table_query)
-        
+
         insert_data_query = """
         INSERT INTO examples (description)
         SELECT 'Hello World!'
@@ -40,7 +40,7 @@ def create_table():
         );
         """
         cur.execute(insert_data_query)
-        
+
         conn.commit()
         cur.close()
         conn.close()
@@ -48,6 +48,7 @@ def create_table():
         return {"message": "Table 'examples' created successfully"}
     except psycopg2.Error as error:
         raise HTTPException(status_code=500, detail=f"Error creating table: {str(error)}")
+
 
 def read_examples():
     try:
@@ -68,6 +69,7 @@ def get_environment_variable(key, default=None):
 
     return value
 
+
 def connect_to_db():
     conn = psycopg2.connect(
         host=get_environment_variable("DATABASE_HOST"),
@@ -78,6 +80,7 @@ def connect_to_db():
         connect_timeout=1,
     )
     return conn
+
 
 @app.get("/quotes")
 def read_quotes():
