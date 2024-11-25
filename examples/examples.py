@@ -50,7 +50,6 @@ def connect_to_db():
     return conn
 
 
-
 @app.get("/addData")
 def create_table():
     try:
