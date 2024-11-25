@@ -18,38 +18,6 @@ def read_root():
 
 
 @app.get("/examples")
-def create_table():
-    try:
-        conn = connect_to_db()
-        cur = conn.cursor()
-
-        create_table_query = """
-        CREATE TABLE IF NOT EXISTS examples (
-            id SERIAL PRIMARY KEY,
-            description TEXT
-        );
-        """
-
-        cur.execute(create_table_query)
-
-        insert_data_query = """
-        INSERT INTO examples (description)
-        SELECT 'Hello World!'
-        WHERE NOT EXISTS (
-            SELECT 1 FROM examples WHERE description = 'Hello world!'
-        );
-        """
-        cur.execute(insert_data_query)
-
-        conn.commit()
-        cur.close()
-        conn.close()
-
-        return {"message": "Table 'examples' created successfully"}
-    except psycopg2.Error as error:
-        raise HTTPException(status_code=500, detail=f"Error creating table: {str(error)}")
-
-
 def read_examples():
     try:
         conn = connect_to_db()
@@ -80,6 +48,40 @@ def connect_to_db():
         connect_timeout=1,
     )
     return conn
+
+
+
+@app.get("/addData")
+def create_table():
+    try:
+        conn = connect_to_db()
+        cur = conn.cursor()
+
+        create_table_query = """
+        CREATE TABLE IF NOT EXISTS examples (
+            id SERIAL PRIMARY KEY,
+            description TEXT
+        );
+        """
+
+        cur.execute(create_table_query)
+
+        insert_data_query = """
+        INSERT INTO examples (description)
+        SELECT 'Hello World!'
+        WHERE NOT EXISTS (
+            SELECT 1 FROM examples WHERE description = 'Hello world!'
+        );
+        """
+        cur.execute(insert_data_query)
+
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        return {"message": "Table 'examples' created successfully"}
+    except psycopg2.Error as error:
+        raise HTTPException(status_code=500, detail=f"Error creating table: {str(error)}")
 
 
 @app.get("/quotes")
