@@ -3,7 +3,7 @@ name: Test Workflow
 on:
   push:
     branches:
-      - CI/CD
+      - main
   pull_request:
     branches:
       - main
