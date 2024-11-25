@@ -96,8 +96,29 @@ infrastructure/
 | `database`     | Provisionner une base de données PostgreSQL        |
 | `vnet`         | Provisionner un réseau virtuel pour isoler les ressources |
 
-Chaque module a la structure suivante :
 
+---
+
+## Endpoints
+
+| Endpoint       | Usage                                              |
+|----------------|----------------------------------------------------|
+|      `/`       | Root URL |
+|  `/examples`   | Visualisation de la table "examples" |
+|   `/dataAdd`   | Ajout de data dans la table "examples" |
+|   `/quotes`    | Visualisation du fichier "quotes.json" |
+|   `/docs`      | Accès à l'aide pour l'API |
+
+---
+
+## Virtual Network
+
+|          Ressources           | Plage d'adresses |
+|-------------------------------|------------------|
+|      Réseau Virtuel (Vnet)    | 10.0.0.0/16 |
+|    Sous-réseau App Service    | 10.0.1.0/24 |
+|  Sous-réseau Base de données  | 10.0.2.0/24 |
+|    Sous-réseau App Gateway    | 10.0.3.0/24 |
 
 ---
 
@@ -109,5 +130,4 @@ Chaque module a la structure suivante :
 4. Exécutez les commandes suivantes pour déployer l'infrastructure :
    ```bash
    terraform init
-   terraform plan
    terraform apply
